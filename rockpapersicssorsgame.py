@@ -7,12 +7,52 @@ gui.geometry("800x400")
 gui.title("Rock Paper Scissors Game")
 gui.config(background="gray94")
 print(font.families())
+plrscore = 0
+compscore = 0
+
+winner = " "
 
 def game(player_choice):
+    global plrscore, compscore, winner
     playerselected.config(text="Your Selection :  " + str(player_choice))
     option =["rock", "paper", "scissors"]
     computer_choice = random.choice(option)
-    computerselected.config(text="Computer Selection : " + str(computer_choice))
+    computerselected.config(text="Computer Selection : " + str(computer_choice))      
+    if player_choice == "rock" and computer_choice == "scissors":
+        plrscore= plrscore + 1
+        compscore= compscore - 1
+        winner = "You Win!"
+        title2.config(text=winner)
+    elif player_choice == "rock" and computer_choice == "paper":
+        plrscore= plrscore - 1
+        compscore= compscore + 1
+        winner = "You Lost!"
+        title2.config(text=winner)
+    elif player_choice == "paper" and computer_choice == "rock":
+        plrscore= plrscore + 1
+        compscore= compscore - 1
+        winner = "You Win!"
+        title2.config(text=winner)
+    elif player_choice == "paper" and computer_choice == "scissors":
+        plrscore= plrscore - 1
+        compscore= compscore + 1
+        winner = "You Lost!"
+        title2.config(text=winner)
+    elif player_choice == "scissors" and computer_choice == "rock":
+        plrscore= plrscore - 1
+        compscore= compscore + 1
+        winner = "You Lost!"
+        title2.config(text=winner)
+    elif player_choice == "scissors" and computer_choice == "paper":
+        plrscore= plrscore + 1
+        compscore= compscore - 1
+        winner = "You Win!"
+        title2.config(text=winner)
+    elif player_choice == computer_choice:
+        winner = "You Tied!"
+        title2.config(text=winner)
+    playerscore.config(text="Your Score: " + str(plrscore))
+    computerscore.config(text="Computer Score: " + str(compscore))
 
 title = Label(gui,text = "Rock Paper Scissors", bg = "gray94", fg = "gray54", font=("Arial",28))
 title.place(x= 230, y=25)
